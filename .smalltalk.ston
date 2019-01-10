@@ -4,5 +4,8 @@ SmalltalkCISpec {
       #baseline : 'ColorsExtensions',
       #directory : 'src'
     }
-  ]
+  ],
+  #testing : [
+    #failOnZeroTests : false
+  ] 
 }
