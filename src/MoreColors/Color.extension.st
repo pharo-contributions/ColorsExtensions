@@ -126,6 +126,35 @@ Color class >> displayColorsNamed: anArray sortBy: aSymbol label: aString [
 ]
 
 { #category : #'*MoreColors' }
+Color class >> gradientFrom: startColor to: endColor steps: steps [
+	"Calculate a gradient from a color to a color, in a quantity of steps. 
+	 This is useful to make palettes, etc."
+	| redStart redDist greenStart greenDist blueStart blueDist redGap greenGap blueGap |
+	
+	redStart := startColor red.
+	redDist := endColor red - startColor red.
+
+	greenStart := startColor green.
+	greenDist := endColor green - startColor green.
+
+	blueStart := startColor blue.
+	blueDist := endColor blue - startColor blue.
+
+	redGap := redDist / steps.
+	greenGap := greenDist / steps.
+	blueGap := blueDist / steps.
+
+	^ Array streamContents: [ :stream |
+		stream << startColor.
+		1 to: (steps - 2) do: [ :index | 
+			stream << (self
+				r: redStart + (redGap * index) 
+				g: greenStart + (greenGap * index) 
+				b: blueStart + (blueGap * index)) ].
+		stream << endColor ]
+]
+
+{ #category : #'*MoreColors' }
 Color class >> greenColorNames [
 
 	^ (Color registeredColorNames
