@@ -1,1 +1,1 @@
-Package { #name : #BaselineOfColorsExtensions }
+Package { #name : 'BaselineOfColorsExtensions' }
